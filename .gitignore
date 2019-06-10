@@ -8,7 +8,7 @@ vscode
 .pnp.js
 
 # testing
-/coverage
+/coveragex`
 
 # production
 /build
