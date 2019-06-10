@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-import logo from './logo.svg';
-import './App.css';
+// import '../App.css';
+import '../index.css';
 
 // function App() {
 //   return (
