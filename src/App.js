@@ -49,6 +49,7 @@ class App extends Component {
       <Router>
         <React.Fragment>
           <header>
+            <img src='../icons8-volunteering-64.png'/>
             <Link to="/">Home</Link>
             <Link to="/about-us">About</Link>
             <Link to="/signup">Signup</Link>
