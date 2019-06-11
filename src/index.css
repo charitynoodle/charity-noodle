@@ -15,3 +15,27 @@ code {
 h1 {
   color: blue
 }
+
+.navContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  
+}
+
+.navItem {
+  flex: 0 1 auto;
+  text-decoration: none;
+  color: teal;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px white;
+}
+
+  .navItem:hover{
+    text-shadow: 2px 2px 8px gray;
+  }
+
+header {
+  background-image: linear-gradient(to bottom right, rgb(138, 144, 150), white);
+  padding: 30px 0px
+}
