@@ -47,11 +47,16 @@ app.post('/login',
     res.sendFile(path.join(__dirname, '../index.html'))
   });
 
-app.get('/getAll', 
+app.get('/getFavorites', 
     (req: express.Request, 
     res: express.Response) => {
     res.json(res.locals)
 })
 
+app.post('/addFavorites', 
+    (req: express.Request, 
+    res: express.Response) => {
+    res.json(res.locals)
+})
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
