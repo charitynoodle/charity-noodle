@@ -64,6 +64,13 @@ app.post("/login", (req: express.Request, res: express.Response) => {
 app.get("/getAll", (req: express.Request, res: express.Response) => {
   res.json(res.locals);
 });
+app.get("/getFavorites", (req: express.Request, res: express.Response) => {
+  res.json(res.locals);
+});
+
+app.post("/addFavorites", (req: express.Request, res: express.Response) => {
+  res.json(res.locals);
+});
 
 // App PORT
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
