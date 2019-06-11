@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-// import '../App.css';
 import '../index.css';
 
 import about from './aboutComponents/about'
+import favorites from './Favorites'
+import search from './searchComponents/search'
 
 // function App() {
 //   return (
@@ -45,9 +46,9 @@ function logoutTest() {
   return <h1>LOGOUT!</h1>
 }
 
-function favoritesTest() {
-  return <h2>Favorites! :)</h2>
-}
+// function favoritesTest() {
+//   return <h2>Favorites! :)</h2>
+// }
 
 class App extends Component {
   render() {
@@ -66,9 +67,9 @@ class App extends Component {
             </div>
           </header>
           <section>
-            <Route exact path="/" component={homeTest}/>
+            <Route exact path="/" component={search}/>
             <Route exact path="/about-us" component={about}/>
-            <Route exact path="/favorites" component={favoritesTest} />
+            <Route exact path="/favorites" component={favorites} />
             <Route exact path="/signup" component={signupTest}/>
             <Route exact path="/login" component={loginTest}/>
             <Route exact path="/logout" component={logoutTest}/>
