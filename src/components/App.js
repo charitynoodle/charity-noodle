@@ -2,52 +2,14 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-// import '../App.css';
 import '../index.css';
 
+// IMPORT PAGE VIEWS
+import search from './searchComponents/search'
 import about from './aboutComponents/about'
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-
-function homeTest() {
-  return <h1>HOME!</h1>
-}
-// function aboutUsTest() {
-//   return <h1>ABOUT US!</h1>
-// }
-function signupTest() {
-  return <h1>SIGNUP!</h1>
-}
-function loginTest() {
-  return <h1>LOGIN!</h1>
-}
-function logoutTest() {
-  return <h1>LOGOUT!</h1>
-}
-
-function favoritesTest() {
-  return <h2>Favorites! :)</h2>
-}
+import favorites from './favoritesComponents/Favorites'
+import signup from './signupComponents/signup'
+import login from './loginComponents/login'
 
 class App extends Component {
   render() {
@@ -56,7 +18,7 @@ class App extends Component {
         <React.Fragment>
           <header>
             <div className="navContainer">
-              <img className="navItem" src='../icons8-volunteering-64.png'/>
+              <img src="https://img.icons8.com/metro/26/000000/volunteering.png" />
               <Link className="navItem" to="/">Home</Link>
               <Link className="navItem" to="/about-us">About</Link>
               <Link className="navItem" to="/favorites">Favorites</Link>
@@ -66,12 +28,12 @@ class App extends Component {
             </div>
           </header>
           <section>
-            <Route exact path="/" component={homeTest}/>
+            <Route exact path="/" component={search}/>
             <Route exact path="/about-us" component={about}/>
-            <Route exact path="/favorites" component={favoritesTest} />
-            <Route exact path="/signup" component={signupTest}/>
-            <Route exact path="/login" component={loginTest}/>
-            <Route exact path="/logout" component={logoutTest}/>
+            <Route exact path="/favorites" component={favorites} />
+            <Route exact path="/signup" component={signup}/>
+            <Route exact path="/login" component={login}/>
+            {/* <Route exact path="/logout" component={logoutTest}/> */}
           </section>
         </React.Fragment>
       </Router>
