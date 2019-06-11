@@ -8,8 +8,8 @@ module.exports = {
         req: express.Request, 
         res: express.Response,
         next: express.NextFunction) => {
-        const queryValues = [req.body.firstname, req.body.lastname, req.body.password, req.body.username];
-        const insertQuery = `INSERT INTO accounts("firstname", "lastname", "password", "username", "email") VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+        const queryValues = [req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email];
+        const insertQuery = `INSERT INTO user_table("firstName", "lastName", "username", "password", "email") VALUES($1, $2, $3, $4, $5) RETURNING *`;
             
         db.query(insertQuery, queryValues, (err, result) => {
           if (err) res.locals.error = err;
@@ -37,7 +37,10 @@ module.exports = {
         })
       },
 
-      getFavorites: (req, res, next) => {
+      getFavorites: (
+        req: express.Request, 
+        res: express.Response,
+        next: express.NextFunction) => {
         db.query('SELECT * FROM favorites_table', (err, result) => {
           if (err) res.locals.error = err;
           else res.locals.result = result;
