@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // import '../App.css';
 import '../index.css';
 
+import about from './aboutComponents/about'
+
 // function App() {
 //   return (
 //     <div className="App">
@@ -30,9 +32,9 @@ import '../index.css';
 function homeTest() {
   return <h1>HOME!</h1>
 }
-function aboutUsTest() {
-  return <h1>ABOUT US!</h1>
-}
+// function aboutUsTest() {
+//   return <h1>ABOUT US!</h1>
+// }
 function signupTest() {
   return <h1>SIGNUP!</h1>
 }
@@ -43,22 +45,30 @@ function logoutTest() {
   return <h1>LOGOUT!</h1>
 }
 
+function favoritesTest() {
+  return <h2>Favorites! :)</h2>
+}
+
 class App extends Component {
   render() {
     return (
       <Router>
         <React.Fragment>
           <header>
-            <img src='../icons8-volunteering-64.png'/>
-            <Link to="/">Home</Link>
-            <Link to="/about-us">About</Link>
-            <Link to="/signup">Signup</Link>
-            <Link to="/login">Log In</Link>
-            <Link to="/logout">Log Out</Link>
+            <div className="navContainer">
+              <img className="navItem" src='../icons8-volunteering-64.png'/>
+              <Link className="navItem" to="/">Home</Link>
+              <Link className="navItem" to="/about-us">About</Link>
+              <Link className="navItem" to="/favorites">Favorites</Link>
+              <Link className="navItem" to="/signup">Signup</Link>
+              <Link className="navItem" to="/login">Log In</Link>
+              <Link className="navItem" to="/logout">Log Out</Link>
+            </div>
           </header>
           <section>
             <Route exact path="/" component={homeTest}/>
-            <Route exact path="/about-us" component={aboutUsTest}/>
+            <Route exact path="/about-us" component={about}/>
+            <Route exact path="/favorites" component={favoritesTest} />
             <Route exact path="/signup" component={signupTest}/>
             <Route exact path="/login" component={loginTest}/>
             <Route exact path="/logout" component={logoutTest}/>
