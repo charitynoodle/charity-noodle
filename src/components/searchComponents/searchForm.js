@@ -13,7 +13,6 @@ const SearchForm = () => {
           <input type="text" value="Search term"></input>
           <br />
           <input type="text" value="City"></input>
-
           <StateDropdown />
           <input type="submit" value="Submit"></input>
       </form>

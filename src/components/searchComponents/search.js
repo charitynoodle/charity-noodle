@@ -13,7 +13,7 @@ const search = (props) => {
   }
 
 
-const mapStateToProbs = function(state) {
+const mapStateToProps = function(state) {
   return state
 }
 
