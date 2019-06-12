@@ -26,6 +26,8 @@ const SearchForm = (props) => {
   // Beep :] 
   // Bop >:(
 
+
+
   return (
     <div>
       <form>
@@ -86,7 +88,7 @@ const SearchForm = (props) => {
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
         </select>
-        <input type="submit" placeholder="Submit" ></input>
+        <input type="submit" placeholder="Submit" onClick={actionCreators.thunkGetCharities}></input>
       </form>
     </div>
   )

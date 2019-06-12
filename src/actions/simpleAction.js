@@ -45,16 +45,23 @@ export const receivedError = () => {
   }
 }
 
-export const thunkGetCharities = queryParams => {
+export const thunkGetCharities = e => {
+  e.preventDefault();
   // possible unpacking of the params :)
+  const storeData = store.getState().simpleReducer;
+
   store.dispatch(fetchingData());
   return function (dispatch, getState) {
     return axios.get('http://localhost:4000/charities', {
       params: {
+        searchTerm: storeData.searchTerm,
+        city: storeData.city,
+        state: storeData.stateChoice
         // Unpack queryParams that will be the queryString for your GET to server:4000
       }
     }).then(data => {
       // IF ERROR, HANDLE ERROR... ELSE {...}
+      console.log("RECEIVED DATA IS: ", data)
       dispatch(receivedData(data))
     }).catch(err => dispatch(receivedError()))
   }
