@@ -43,10 +43,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use("/auth", authRoutes);
 
+// Production Settings
+if (process.env.NODE_ENV === "production") {
+  app.use(
+    "/static",
+    express.static(path.resolve(__dirname, "../build/static"))
+  );
+  app.get("/", (req: express.Request, res: express.Response) => {
+    res.sendFile(path.resolve(__dirname, "../build/index.html"));
+  });
+  app.get("/manifest.json", (req: express.Request, res: express.Response) => {
+    res.sendFile(path.resolve(__dirname, "../build/manifest.json"));
+  });
+  app.get("/src/index.css", (req: express.Request, res: express.Response) => {
+    res.sendFile(path.resolve(__dirname, "../src/index.css"));
+  });
+}
+
 // Route handelers
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.render("home");
-});
 
 app.get("/signup", (req: express.Request, res: express.Response) => {
   app.set("view engine", "ejs");

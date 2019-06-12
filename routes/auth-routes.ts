@@ -29,7 +29,7 @@ router.get(
   "/google/redirect",
   passport1.authenticate("google"),
   (req: any, res: { sendFile: (arg0: string) => void }) => {
-    res.sendFile(path.resolve(__dirname, "../public/index.html"));
+    res.sendFile(path.resolve(__dirname, "../build/index.html"));
   }
 );
 

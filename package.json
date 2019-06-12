@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "nodemon server/server.ts",
+    "server": "NODE_ENV=production nodemon server/server.ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
