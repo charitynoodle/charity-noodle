@@ -4,27 +4,16 @@ import SearchForm from './searchForm'
 
 const search = (props) => {
   //Something
- 
+
   return (
     <div>
       <SearchForm />
     </div>
   )
-  }
-
-
-const mapStateToProps = function(state) {
-  return state
 }
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    // increment: () => dispatch({type: 'INCREMENT', payload: 6})
-    // decrement: () => dispatch({type: 'DECREMENT', payload: 5})
-    // reset: () => dispatch({type: 'RESET'})
-    
-  }
-}
+
+
 
 
 

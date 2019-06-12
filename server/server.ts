@@ -61,7 +61,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Route handelers
-
 app.get("/signup", (req: express.Request, res: express.Response) => {
   app.set("view engine", "ejs");
   res.render("../client/components/signup.ejs", { error: null });
