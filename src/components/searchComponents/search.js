@@ -1,6 +1,7 @@
 import React from 'react'
 
 import SearchForm from './searchForm'
+import SearchResult from './searchResult'
 
 const search = (props) => {
   //Something
@@ -8,6 +9,7 @@ const search = (props) => {
   return (
     <div>
       <SearchForm />
+      <SearchResult />
     </div>
   )
 }

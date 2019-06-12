@@ -3,17 +3,21 @@ import * as path from "path";
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as passport from "passport";
+import axios from 'axios'
+
 const bcryptController = require("./controllers/bcryptController");
 const queryController = require("./controllers/queryController");
 const sessionController = require("./controllers/sessionController");
 const cookieController = require("./controllers/cookieController");
 const cookieSession = require("cookie-session");
 
+const apiKey = "87ca426ff6866d3bc5b3fbffd81dccbd"
+
 // We need the line below
 const passportSetup = require("../config/passport-setup.ts");
 const authRoutes = require("../routes/auth-routes.ts");
 
-const { PORT = 3000 } = process.env;
+const { PORT = 4000 } = process.env;
 const app: any = express();
 
 // Server side rendering.
@@ -89,6 +93,31 @@ app.post(
 // app.post("/signup", (req: express.Request, res: express.Response) => {
 //   res.sendFile(path.join(__dirname, "../index.html"));
 // });
+
+
+
+app.get("/charities", (req: express.Request, res: express.Response) => {
+  console.log("HIT CHARITIES! :) ");
+  console.log("REQ.QUERY is : ", req.query);
+  const queryParams = {
+    ...req.query, 
+    user_key: apiKey
+  };
+  console.log("In /charities route: queryParams are : ", queryParams)
+  
+  axios.get('http://data.orghunter.com/v1/charitysearch', {
+    params: queryParams
+  })
+  .then(data => {
+    console.log("Received data");
+    // console.log("XXX: ", data.data);
+    res.send(data.data);
+  }).catch(err => {
+    console.log("Received error!")
+    res.send(err)
+  })
+});
+
 
 app.post(
   "/login",

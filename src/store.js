@@ -7,12 +7,14 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/rootReducer'
 
 const store = createStore(
-  rootReducer, {},
+  rootReducer,
   compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
+
+
 
 
 export default store
