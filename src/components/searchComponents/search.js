@@ -14,7 +14,13 @@ const search = (props) => {
 
 
 const mapStateToProps = function(state) {
-  return state
+  const { searchTerm, city, stateChoice } = state
+  return {
+    searchTerm,
+    city,
+    stateChoice
+  }
+
 }
 
 const mapDispatchToProps = function(dispatch) {

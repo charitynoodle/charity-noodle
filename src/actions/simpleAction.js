@@ -14,9 +14,9 @@ export const updateCity = (city) => (
   }
 )
 
-export const updateState = (state) => (
+export const updateStateChoice = (stateChoice) => (
   {
-    type: types.UPDATE_STATE,
-    payload: state
+    type: types.UPDATE_STATE_CHOICE,
+    payload: stateChoice
   }
 )
