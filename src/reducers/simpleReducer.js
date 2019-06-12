@@ -32,6 +32,7 @@ export default (state = defaultState, action) => {
         error: false
       }
     case 'RECEIVED_DATA':
+      console.log("RECEIVED_DATA REDUCER CASE FIRING WITH: ", action.payload);
       return {
         ...state,
         loading: false,
@@ -47,7 +48,6 @@ export default (state = defaultState, action) => {
 
     default:
       return state
-
 
   }
 }
