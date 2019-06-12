@@ -18,7 +18,7 @@ const mapDispatchToProps = function (dispatch) {
   return {
     updateSearchTerm: (e) => dispatch(actionCreators.updateSearchTerm(e.target.value)),
     updateCity: (e) => dispatch(actionCreators.updateCity(e.target.value)),
-    updateStateChoice: (e) => dispatch(actionCreators.updateStateChoice(e.target.value))
+    updateStateChoice: (e) => dispatch(actionCreators.updateStateChoice(e.target.value)),
   }
 }
 
