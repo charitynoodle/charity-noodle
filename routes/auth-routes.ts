@@ -3,9 +3,10 @@ import * as passport1 from "passport";
 const router: any = require("express").Router();
 
 // Self Explanitory
-router.get("/login", (req: any, res: { render: (arg0: string) => void }) => {
-  res.render("login");
-});
+// Will remove later
+// router.get("/login", (req: any, res: { render: (arg0: string) => void }) => {
+//   res.render("login");
+// });
 
 // Self Explanitory
 router.get(
@@ -29,7 +30,7 @@ router.get(
   "/google/redirect",
   passport1.authenticate("google"),
   (req: any, res: { sendFile: (arg0: string) => void }) => {
-    res.sendFile(path.resolve(__dirname, "../public/index.html"));
+    res.sendFile(path.resolve(__dirname, "../build/index.html"));
   }
 );
 
