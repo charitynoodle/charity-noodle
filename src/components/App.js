@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -28,11 +28,11 @@ class App extends Component {
             </div>
           </header>
           <section>
-            <Route exact path="/" component={search}/>
-            <Route exact path="/about-us" component={about}/>
+            <Route exact path="/" component={search} />
+            <Route exact path="/about-us" component={about} />
             <Route exact path="/favorites" component={favorites} />
-            <Route exact path="/signup" component={signup}/>
-            <Route exact path="/login" component={login}/>
+            <Route exact path="/signup" component={signup} />
+            <Route exact path="/login" component={login} />
             {/* <Route exact path="/logout" component={logoutTest}/> */}
           </section>
         </React.Fragment>

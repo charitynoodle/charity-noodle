@@ -4,7 +4,7 @@ const defaultState = {
   stateChoice: 'Alabama'
 }
 
-export default(state = defaultState, action) => {
+export default (state = defaultState, action) => {
   switch (action.type) {
     case 'UPDATE_SEARCH_TERM':
       return {
@@ -12,17 +12,17 @@ export default(state = defaultState, action) => {
         ...state,
         searchTerm: action.payload
       }
-    case 'UPDATE_CITY':
-      return {
-        ...state,
-        city: action.payload
-      }
-    case 'UPDATE_STATE_CHOICE':
-      return {
-        ...state,
-        stateChoice: action.payload
-      }
-    default:
-      return state
+      case 'UPDATE_CITY':
+        return {
+          ...state,
+          city: action.payload
+        }
+        case 'UPDATE_STATE_CHOICE':
+          return {
+            ...state,
+            stateChoice: action.payload
+          }
+          default:
+            return state
   }
 }
