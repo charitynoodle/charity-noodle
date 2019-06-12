@@ -3,6 +3,10 @@ import * as path from "path";
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as passport from "passport";
+const bcryptController = require('./controllers/bcryptController');
+const queryController = require('./controllers/queryController');
+const sessionController = require('./controllers/sessionController');
+const cookieController = require('./controllers/cookieController');
 const cookieSession = require("cookie-session");
 
 // We need the line below
@@ -64,25 +68,57 @@ if (process.env.NODE_ENV === "production") {
 app.get("/signup", (req: express.Request, res: express.Response) => {
   app.set("view engine", "ejs");
   res.render("../client/components/signup.ejs", { error: null });
+// Route handlers
+app.get("/", (req: express.Request, res: express.Response) => {
+  res.render("home");
 });
 
-app.post("/signup", (req: express.Request, res: express.Response) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+app.post("/signup",
+    bcryptController.hashPassword,
+    queryController.signUp,
+    cookieController.setSSIDCookie,
+    sessionController.verifySession,
+    sessionController.lookupSession,
+    (req: express.Request, res: express.Response) => {
+        if (res.locals.error) res.send(res.locals.error);
+        else res.send(res.locals.result);
 });
+
+// DO WE NEED A SIGNUP ROUTE ON THE SERVER?
+// app.post("/signup", (req: express.Request, res: express.Response) => {
+//   res.sendFile(path.join(__dirname, "../index.html"));
+// });
 
 app.post("/login", (req: express.Request, res: express.Response) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+    queryController.login,
+    bcryptController.verifyPassword,
+    cookieController.setSSIDCookie,
+    sessionController.verifySession,
+    sessionController.lookupSession,
+    (req, res) => {
+        if (res.locals.error) {
+        res.send(res.locals.error);
+        res.status(501);
+        }
+        else res.send(res.locals.result);
+    }
 });
 
+// ROUTE TO MAKE API CALL
 app.get("/getAll", (req: express.Request, res: express.Response) => {
   res.json(res.locals);
 });
+
+// ROUTE TO GET ALL OF A USER'S FAVORITES
 app.get("/getFavorites", (req: express.Request, res: express.Response) => {
-  res.json(res.locals);
+    queryController.getFavorites,
+    res.send(res.locals);
 });
 
+// ROUTE TO ADD FAVORITES
 app.post("/addFavorites", (req: express.Request, res: express.Response) => {
-  res.json(res.locals);
+    queryController.addFavorites,
+    res.send(res.locals);
 });
 
 // App PORT

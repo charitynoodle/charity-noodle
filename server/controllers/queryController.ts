@@ -48,4 +48,20 @@ module.exports = {
         })
       },
 
+      addFavorites: (
+        req: express.Request, 
+        res: express.Response,
+        next: express.NextFunction) => {
+        const queryValues = [req.body.favID];
+        const insertQuery = 'INSERT INTO favorites_table("favID") VALUES($1) RETURNING *';
+        db.query(insertQuery, queryValues, (err, result) => {
+            if (err) res.locals.error = err;
+            else {
+                res.locals.result = result.rows[0];
+                console.log('+++++Favorite added to db+++++++ ', res.locals.result);
+            }
+            return next();
+        })
+    }
+
 }
