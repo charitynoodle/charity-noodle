@@ -1,30 +1,21 @@
 import React from 'react'
 
 import SearchForm from './searchForm'
+import SearchResult from './searchResult'
 
 const search = (props) => {
   //Something
- 
+
   return (
     <div>
       <SearchForm />
+      <SearchResult />
     </div>
   )
-  }
-
-
-const mapStateToProps = function(state) {
-  return state
 }
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    // increment: () => dispatch({type: 'INCREMENT', payload: 6})
-    // decrement: () => dispatch({type: 'DECREMENT', payload: 5})
-    // reset: () => dispatch({type: 'RESET'})
-    
-  }
-}
+
+
 
 
 

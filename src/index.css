@@ -61,3 +61,20 @@ header {
   border: 2px solid cyan;
   height: 70%;
 }
+
+div.charityResult {
+  border: 2px solid black;
+  margin: 20px auto;
+  box-shadow: 2px 2px 2px;
+  width: 70%;
+  background-color: teal;
+  color: white;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px
+
+}
+
+.resultsContainer{
+  display: inline-block
+}
