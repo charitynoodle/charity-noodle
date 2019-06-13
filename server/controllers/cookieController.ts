@@ -18,7 +18,6 @@ module.exports = {
       console.log('+++COOKIE FOUND+++');
       res.locals.token = req.cookies[res.locals.result.username];
     }
-
     return next();
   },
 }

@@ -5,6 +5,7 @@ const db: any = connectToDB();
 module.exports = {
 
   verifySession: (req, res, next) => {
+    console.log("STARTING VERIFYSESSION MIDDLEWARE");
     if (res.locals.error) return next();
     db.query(`SELECT * FROM sessions WHERE sessionid='${res.locals.token}'`, (err,result) => {
       if (err) {
@@ -40,6 +41,7 @@ module.exports = {
   },
 
   lookupSession: (req, res, next) => {
+    console.log("STARTING LOOKUPSESSION MIDDLEWARE");
     if (res.locals.error) return next();
     db.query(`SELECT ac.username, ac.lat, ac.lng FROM accounts ac INNER JOIN sessions s ON ac.id = s.accountid WHERE s.sessionid='${res.locals.token}'`, (err, result) => {
       if (err) res.locals.error = err;

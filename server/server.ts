@@ -24,6 +24,7 @@ const app: any = express();
 app.set("view engine", "ejs");
 
 // All the app.use's
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 // CORS
@@ -81,9 +82,12 @@ app.post(
   sessionController.verifySession,
   sessionController.lookupSession,
   (req: express.Request, res: express.Response) => {
+    console.log("IN LAST MIDDLEWARE OF POST SIGNUP!");
+    // TODO: IT SEEMS LIKE WE'RE SENDING BACK ERROR, SO FIND WHERE IT IS! SOMEONE SAID THAT IT MIGHT BE TO DO WITH THE FACT THAT WE DONT HAVE A SESSIONS TABLE.
     if (res.locals.error) {
       res.send(res.locals.error);
     } else {
+      console.log("SENDING BACK: ", res.locals.result);
       res.send(res.locals.result);
     }
   }
@@ -134,10 +138,6 @@ app.post(
   }
 );
 
-// ROUTE TO MAKE API CALL
-app.get("/getAll", (req: express.Request, res: express.Response) => {
-  res.json(res.locals);
-});
 
 // ROUTE TO GET ALL OF A USER'S FAVORITES
 app.get("/getFavorites", (req: express.Request, res: express.Response) => {

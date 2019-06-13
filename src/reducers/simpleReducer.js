@@ -4,7 +4,21 @@ const defaultState = {
   stateChoice: 'AL',
   loading: false,
   error: false,
-  data: []
+  signupError: false,
+  data: [],
+  currentUser: '',
+  currentUserID: '',
+  login: {
+    userName: '',
+    password: ''
+  },
+  signup: {
+    firstName: '',
+    lastName: '',
+    emailAddr: '',
+    userName: '',
+    password: ''
+  }
 }
 
 export default (state = defaultState, action) => {
@@ -32,7 +46,7 @@ export default (state = defaultState, action) => {
         error: false
       }
     case 'RECEIVED_DATA':
-      console.log("RECEIVED_DATA REDUCER CASE FIRING WITH: ", action.payload);
+      console.log("RECEIVED_DATA REDUCER CASE FIRING WsITH: ", action.payload);
       return {
         ...state,
         loading: false,
@@ -45,7 +59,56 @@ export default (state = defaultState, action) => {
         loading: false,
         error: true
       }
-
+    case 'SIGNUP_UPDATE_FIRSTNAME':
+      return {
+        ...state,
+        signup: {
+          ...state.signup,
+          firstName: action.payload
+        }
+      }
+    case 'SIGNUP_UPDATE_LASTNAME':
+      return {
+        ...state,
+        signup: {
+          ...state.signup,
+          lastName: action.payload
+        }
+      }
+    case 'SIGNUP_UPDATE_EMAILADDR':
+      return {
+        ...state,
+        signup: {
+          ...state.signup,
+          emailAddr: action.payload
+        }
+      }
+    case 'SIGNUP_UPDATE_USERNAME':
+      return {
+        signup: {
+          ...state.signup,
+          userName: action.payload
+        }
+      }
+    case 'SIGNUP_UPDATE_PASSWORD':
+      return {
+        signup: {
+          ...state.signup,
+          password: action.payload
+        }
+      }
+    case 'RECEIVED_SIGNUP_DATA':
+      return {
+        ...state, 
+        currentUser: action.payload.currentUser,
+        currentUserID: action.payload.currentUserID,
+        signupError: false
+      }
+      case 'RECEIVED_SIGNUP_ERROR':
+        return {
+          ...state,
+          signupError: action.payload
+        }
     default:
       return state
 
