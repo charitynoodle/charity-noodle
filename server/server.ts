@@ -85,6 +85,7 @@ app.post(
     console.log("IN LAST MIDDLEWARE OF POST SIGNUP!");
     // TODO: IT SEEMS LIKE WE'RE SENDING BACK ERROR, SO FIND WHERE IT IS! SOMEONE SAID THAT IT MIGHT BE TO DO WITH THE FACT THAT WE DONT HAVE A SESSIONS TABLE.
     if (res.locals.error) {
+      console.log("SENDING BACK ERROR");
       res.send(res.locals.error);
     } else {
       console.log("SENDING BACK: ", res.locals.result);

@@ -2,17 +2,31 @@ import * as express from 'express';
 import {connectToDB} from '../controllers/connectdb';
 const db: any = connectToDB();
 
+interface Query {text: string; values: any[]}
+
+
 module.exports = {
 
     signUp: (
         req: express.Request, 
         res: express.Response,
         next: express.NextFunction) => {
-        const queryValues = [req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email];
-        const insertQuery = `INSERT INTO user_table("firstName", "lastName", "username", "password", "email") VALUES($1, $2, $3, $4, $5) RETURNING *`;
-            
-        db.query(insertQuery, queryValues, (err, result) => {
-          if (err) res.locals.error = err;
+        console.log("IN SIGNUP MIDDLEWARE IN QUERYCONTROLLER");
+        // const queryValues = [req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email];
+        // const insertQuery = `INSERT INTO users_table("firstName", "lastName", "username", "password", "email") VALUES($1, $2, $3, $4, $5) RETURNING *`;
+        
+        const queryObject : Query = {
+          text: `INSERT INTO users_table("firstname", "lastname", "username", "password", "email") VALUES($1, $2, $3, $4, $5) RETURNING *`,
+          values: [req.body.firstName, req.body.lastName, req.body.username, req.body.password, req.body.email]
+        }
+
+
+        db.query(queryObject, (err, result) => {
+          if (err) {
+            console.log("ERROR IN QUERYCONTROLLER.TS");
+            console.log("ERROR IS ^: ", err)
+            res.locals.error = err;
+          }
           else {
             res.locals.result = result.rows[0];
             console.log('+++++User added to db+++++++ ', res.locals.result);

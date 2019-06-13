@@ -9,9 +9,8 @@ const login = () => {
         <input type="text" name="" id="" placeholder="Password"/>
         <input type="submit" value="Submit"/>
         <div>
-          
           <div>
-          <a class="google-btn" href="/auth/google">Login Wth Google+</a>
+            <a className="google-btn" href="/auth/google">Login Wth Google+</a>
           </div>
         </div>
       </div>
