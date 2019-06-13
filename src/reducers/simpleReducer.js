@@ -104,11 +104,13 @@ export default (state = defaultState, action) => {
         currentUserID: action.payload.currentUserID,
         signupError: false
       }
-      case 'RECEIVED_SIGNUP_ERROR':
-        return {
-          ...state,
-          signupError: action.payload
-        }
+    case 'RECEIVED_SIGNUP_ERROR':
+      return {
+        ...state,
+        signupError: action.payload
+      }
+  
+      
     default:
       return state
 

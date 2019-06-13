@@ -25,7 +25,7 @@ const SearchResults = (props) => {
   }
 
   const charitiesArray = props.data.map((charity, idx) => (
-    <SingleResult key={idx} name={charity.charityName} city={charity.city} state={charity.state} url={charity.url}/>
+    <SingleResult key={idx} name={charity.charityName} ein={charity.ein} city={charity.city} state={charity.state} url={charity.url}/>
   )
 )
   
