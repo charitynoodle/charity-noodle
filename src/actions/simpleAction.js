@@ -75,6 +75,86 @@ async function axiosGetRequest(storeData) {
 }
 
 
+// SIGNUP ACTION CREATORS
+
+
+export const signupUpdateFirstName = (firstName) => {
+  return {
+    type: types.SIGNUP_UPDATE_FIRSTNAME,
+    payload: firstName
+  }
+}
+
+export const signupUpdateLastName = (lastName) => {
+  return {
+    type: types.SIGNUP_UPDATE_LASTNAME,
+    payload: lastName
+  }
+}
+
+export const signupUpdateEmailAddr = (emailAddr) => {
+  return {
+    type: types.SIGNUP_UPDATE_EMAILADDR,
+    payload: emailAddr
+  }
+}
+
+export const signupUpdateUserName = (userName) => {
+  return {
+    type: types.SIGNUP_UPDATE_USERNAME,
+    payload: userName
+  }
+}
+
+export const signupUpdatePassword = (password) => {
+  return {
+    type: types.SIGNUP_UPDATE_PASSWORD,
+    payload: password
+  }
+}
+
+export const receivedSignupData = data => {
+  return {
+    type: types.RECEIVED_SIGNUP_DATA,
+    payload: data
+  }
+}
+
+export const receivedSignupError = () => {
+  return {
+    type: types.RECEIVED_SIGNUP_ERROR
+  }
+
+}
+
+
+// SIGNUP THUNK
+export const sendSignupInfo = e => {
+  e.preventDefault()
+  const signupData = store.getState().simpleReducer.signup
+  const postData = {
+    firstName: signupData.firstName,
+    lastName: signupData.lastName,
+    email: signupData.emailAddr,
+    username: signupData.userName,
+    password: signupData.password
+  }
+  console.log("ABOUT TO SEND: ", postData);
+  axios.post('http://localhost:4000/signup', postData)
+  .then(data => store.dispatch(receivedSignupData(data)))
+  .catch(err => store.dispatch(receivedSignupError()))
+}
+
+
+
+// export const thunkGetCharities = e => {
+//   console.log("Called the thunkGetCharities action")
+//   e.preventDefault();
+//   const storeData = store.getState().simpleReducer;
+//   store.dispatch(fetchingData());
+//   axiosGetRequest(storeData)
+
+// }
 
 
 // TODO: 1: Write the 3 reducers to handle the 3 most recent actionCreators that we did here... The thunk one doesn't require one itself.. + think of how to add them to state

@@ -7,6 +7,10 @@ module.exports = {
     req: express.Request, 
     res: express.Response,
     next: express.NextFunction) => {
+    console.log("IN HASHPASSWORD")
+    // console.log("req.body.password is: ", req.body.password)
+    // console.log("REQ IS: ", req);
+    console.log("REQ.BODY IS: ", req.body)
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(req.body.password, salt);
     req.body.password = hash;
