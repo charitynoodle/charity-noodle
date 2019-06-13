@@ -126,7 +126,7 @@ app.post(
   cookieController.setSSIDCookie,
   sessionController.verifySession,
   sessionController.lookupSession,
-  (req, res) => {
+  (req: express.Request, res: express.Response) => {
     if (res.locals.error) {
       res.send(res.locals.error);
       res.status(501);
@@ -141,7 +141,7 @@ app.get("/getAll", (req: express.Request, res: express.Response) => {
 
 // ROUTE TO GET ALL OF A USER'S FAVORITES
 app.get("/getFavorites", (req: express.Request, res: express.Response) => {
-  queryController.getFavorites, res.send(res.locals);
+  queryController.getFavorites, res.send(res.locals); //add middleware for API call based on charity_id's for specific user
 });
 
 // ROUTE TO ADD FAVORITES
