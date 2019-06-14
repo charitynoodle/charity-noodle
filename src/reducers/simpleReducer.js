@@ -5,6 +5,7 @@ const defaultState = {
   loading: false,
   error: false,
   signupError: false,
+  loginError: false,
   data: [],
   currentUser: '',
   currentUserID: '',
@@ -109,6 +110,34 @@ export default (state = defaultState, action) => {
           ...state,
           signupError: action.payload
         }
+    case 'LOGIN_UPDATE_USERNAME':
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          userName: action.payload
+        }
+      }
+    case 'LOGIN_UPDATE_PASSWORD':
+      return {
+        ...state,
+        login: {
+          ...state.login,
+          password: action.payload
+        }
+      }
+    case 'RECEIVED_LOGIN_DATA':
+      return {
+        ...state, 
+        currentUser: action.payload.currentUser,
+        currentUserID: action.payload.currentUserID,
+        loginError: false
+      }
+    case 'RECEIVED_LOGIN_ERROR':
+      return {
+        ...state,
+        loginError: true
+      }
     default:
       return state
 

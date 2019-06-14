@@ -19,7 +19,7 @@ const SearchResults = (props) => {
   console.log("PROPS: ", props)
   console.log("PROPS.DATA IS: ", props.data)
 
-  if (props.data[0]) {
+  if (props.data && props.data[0]) {
     console.log(Object.keys(props.data[0]));
     console.log(props.data[0].charityName);
   }

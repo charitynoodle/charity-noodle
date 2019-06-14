@@ -22,12 +22,15 @@ module.exports = {
     res: express.Response,
     next: express.NextFunction) => {
     if (res.locals.error) return next();
-    if (bcrypt.compareSync(req.body.password, res.locals.result.password)) {
+    console.log("ABOUT TO COMPARE PASSWORDS: ", req.body.password, res.locals.foundPassword)
+    if (bcrypt.compareSync(req.body.password, res.locals.foundPassword)) {
       console.log('Login success');
+      return next()
     } 
     else {
-      res.locals.error = { error: 'Invalid password' };
+      res.locals.error = new Error('Invalid Password')
       console.log('Login unsuccessfull');
+      return next()
     }
     return next();
   },
