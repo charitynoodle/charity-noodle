@@ -2,8 +2,11 @@ import * as express from 'express';
 import {connectToDB} from '../controllers/connectdb';
 const db: any = connectToDB();
 
-interface Query {text: string; values: any[]}
 
+interface Query {
+    text: string;
+    values: any[];
+}
 
 module.exports = {
 
@@ -27,6 +30,7 @@ module.exports = {
             console.log("ERROR IS ^: ", err)
             res.locals.error = err;
           }
+
           else {
             res.locals.userPK = result.rows[0].id;
             res.locals.result = result.rows[0];
@@ -81,7 +85,11 @@ module.exports = {
         req: express.Request, 
         res: express.Response,
         next: express.NextFunction) => {
-        db.query('SELECT * FROM favorites_table', (err, result) => {
+        const queryObj: Query = {
+            text: 'SELECT favorites_table FROM merge_table WHERE user_table = $1',
+            values: [res.locals.userTablePK] //need to store user's primary key on frontend, to send to backend when favorites are requested
+        }
+        db.query(queryObj, (err, result) => {
           if (err) res.locals.error = err;
           else res.locals.result = result;
           return next();
@@ -92,9 +100,11 @@ module.exports = {
         req: express.Request, 
         res: express.Response,
         next: express.NextFunction) => {
-        const queryValues = [req.body.favID];
-        const insertQuery = 'INSERT INTO favorites_table("favID") VALUES($1) RETURNING *';
-        db.query(insertQuery, queryValues, (err, result) => {
+        const queryObj: Query = {
+            text: 'INSERT INTO favorites_table("fav_id") VALUES($1) RETURNING *',
+            values: [req.body.fav_id] //verify fav_id is the same on the front end
+        };
+        db.query(queryObj, (err, result) => {
             if (err) res.locals.error = err;
             else {
                 res.locals.result = result.rows[0];
