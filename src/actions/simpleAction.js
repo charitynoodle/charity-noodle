@@ -165,18 +165,63 @@ export const selectFav = (e, ein) => {
 
 
 
-// export const thunkGetCharities = e => {
-//   console.log("Called the thunkGetCharities action")
-//   e.preventDefault();
-//   const storeData = store.getState().simpleReducer;
-//   store.dispatch(fetchingData());
-//   axiosGetRequest(storeData)
+// LOGIN ACTION CREATORS
+export const loginUpdateUsername = (username) => {
+  return {
+    type: types.LOGIN_UPDATE_USERNAME,
+    payload: username
+  }
+}
 
+export const loginUpdatePassword = (password) => {
+  return {
+    type: types.LOGIN_UPDATE_PASSWORD,
+    payload: password
+  }
+}
+
+export const receivedLoginData = (data) => {
+  return {
+    type: types.RECEIVED_LOGIN_DATA,
+    payload: data
+  }
+}
+
+export const receivedLoginError = () => {
+  return {
+    type: types.RECEIVED_LOGIN_ERROR
+  }
+}
+
+export const sendLoginInfo = e => {
+  // FINISH
+  e.preventDefault()
+  const loginData = store.getState().simpleReducer.login
+  const postData = {
+    username: loginData.userName, //* Note: 
+    password: loginData.password
+  }
+  console.log("ABOUT TO SEND LOGIN DATA: ", postData);
+  axios.post('http://localhost:4000/login', postData)
+  .then(data => store.dispatch(receivedLoginData(data)))
+  .catch(err => store.dispatch(receivedLoginError()))
+}
+
+
+
+
+// export const sendSignupInfo = e => {
+//   e.preventDefault()
+//   const signupData = store.getState().simpleReducer.signup
+//   const postData = {
+//     firstName: signupData.firstName,
+//     lastName: signupData.lastName,
+//     email: signupData.emailAddr,
+//     username: signupData.userName,
+//     password: signupData.password
+//   }
+//   console.log("ABOUT TO SEND: ", postData);
+//   axios.post('http://localhost:4000/signup', postData)
+//   .then(data => store.dispatch(receivedSignupData(data)))
+//   .catch(err => store.dispatch(receivedSignupError()))
 // }
-
-
-// TODO: 1: Write the 3 reducers to handle the 3 most recent actionCreators that we did here... The thunk one doesn't require one itself.. + think of how to add them to state
-// TODO: 2: Actually call this shit on button submission on the searchForm.js
-// TODO: 3: Create the route on the server side that responds to our request to /charities + Make Api Call + Send correct data back
-// TODO: 4: Parse the data and render the components?
-// TODO: 5: Think about how to do the favorites on the charity objects... from a data and UI perspective ;)

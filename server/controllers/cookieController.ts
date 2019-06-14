@@ -13,18 +13,23 @@ module.exports = {
     }
   
 
+    const imputedUserName = res.locals.result.username ? req.cookies[res.locals.result.username] : req.cookies[req.body.username]
+    
     // CREATING A COOKIE IF IT DOESN'T EXIST IN THE CLIENT
   //  console.log('++++COOKIEZ IN SSID', req.cookies);
-    if (!req.cookies[res.locals.result.username]) {
+    if (!imputedUserName) {
       console.log('---NO COOKIE--- creating cookie...');
-      let payload = { username: res.locals.result.username };
+      let payload = { username: imputedUserName };
       let token = jwt.sign(payload, superSecretKey, { expiresIn: 60 });
       
       // Insert into the sessions table 
       const queryObject : Query = {
-        text: `INSERT INTO sessions ("accountid", "sessionid") VALUES ($1, $2) RETURNING *`,
-        values: [res.locals.result.user_id, res.locals.token]
+        text: `INSERT INTO sessions ("accountid", "sessionid", "userid") VALUES ($1, $2, $3) RETURNING *`,
+        values: [res.locals.result.id || res.locals.userPK, token, res.locals.userPK]
       }
+
+      console.log("MIKEY: ", res.locals);
+      console.log("ZZZ: queryObj in cookieController verifysessions is: ", queryObject)
 
       db.query(queryObject, (err, data) => {
         if (err) {
