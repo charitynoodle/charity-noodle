@@ -145,6 +145,24 @@ export const sendSignupInfo = e => {
   .catch(err => store.dispatch(receivedSignupError()))
 }
 
+//SELECT FAVORITE THUNK
+
+export const selectFav = (e, ein) => {
+  console.log('this should be ein number: ', ein)
+  e.preventDefault()
+  const currUserID = store.getState().simpleReducer.currentUserID
+  console.log('this should be currUserID: ', currUserID);
+  const body = {
+    currUserID,
+    ein
+  }
+  //axios post request to the server sending ein number and currUserID
+  // axios.post('http://localhost:4000//favorites', body)
+  // .then(data =>)
+}
+
+
+
 
 
 // LOGIN ACTION CREATORS
